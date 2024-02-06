@@ -1,0 +1,37 @@
+{% extends 'blog/base.html' %}
+{% load custom_media_filters %}
+
+{% block head %}
+<title>{{ series.title }}</title>
+{% endblock %}
+
+{% block content %}
+  <h1>{{ series.title }}</h1>
+  <h1><a href="{% url 'media:series_list' %}">Home</a></h1>
+
+  {% if episodes %}
+      {% for episode in episodes %}
+      <!-- Make each epside a row of a table -->
+      <table>
+        <tr>
+            <td>
+                <h3><a href="{% url 'media:play_media' episode.slug %}">{{ episode.title }}</a></h3>
+            </td>
+            <td>
+                {% with player_time=episode|get_player_time:request.user %}
+                    {% if player_time %}
+                        <span>(Time: {{ player_time.position }})</span>
+                    {% endif %}
+                {% endwith %}
+            </td>
+        </tr>
+      </table>
+        
+        
+        
+
+      {% endfor %}
+  {% else %}
+    <p>No episodes available for this series.</p>
+  {% endif %}
+{% endblock %}
