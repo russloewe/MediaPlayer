@@ -1,5 +1,5 @@
 {% extends 'blog/base.html' %}
-{% load custom_filters %}
+{% load custom_media_filters %}
 
 {% block head %}
 <title>Content Listing</title>
@@ -25,7 +25,7 @@
             
           {% with player_time=media_item|get_player_time:request.user %}
             {% if player_time %}
-              <span>(Time: {{ player_time.position }})</span>
+              <span>(Time: {{ player_time.position|format_playertime }})</span>
             {% endif %}
           {% endwith %}
           
