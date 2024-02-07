@@ -20,7 +20,7 @@
             <td>
                 {% with player_time=episode|get_player_time:request.user %}
                     {% if player_time %}
-                        <span>(Time: {{ player_time.position }})</span>
+                        <span>(Time: {{ player_time.position|format_playertime }})</span>
                     {% endif %}
                 {% endwith %}
             </td>
