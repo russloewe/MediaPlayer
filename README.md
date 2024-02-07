@@ -23,3 +23,10 @@ Add this to <appname>/urls.py
         path('media/', include('media.urls')),
         ...
 ]
+
+## database
+
+run
+
+        ./manage.py makemigrations media
+        ./manage.py migrate
