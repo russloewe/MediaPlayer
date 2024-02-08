@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Disable double tap zoom iphone -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0"/>
+  <meta name="google-site-verification" content="xe0ekHJ5Hi7j8hsTxtV1TDCcMGDbeoIV9Zsrpe6zts8" />
+  
+  <!-- Include the Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/static/r_logo.svg">
+  
+  <!-- Include Styles -->
+  <style type="text/css" media="screen">
+        {% include 'blog/style.css' %}
+  </style>
+    
+    {% block head %}
+        <title>{{title}}</title>
+        <meta name="description" content="{{meta_description}}">
+    {% endblock %}
+    
+</head>
+<body>
+
+<div class="container">
+    <a href="{% url 'home:index' %}"  >
+    <img src="/static/images/r_logo.svg"   alt='basic image of capital cursive r.'>
+    </a>
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'account:logout' %}">Logout</a></li>
+    {% else %}
+        <li><a href="{% url 'account:login' %}">Login</a></li>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+</div>
+
+<div class="container">
+<p>&copy; 2023 Russell Loewe </p>
+<p>russloewe@protonmail.com</p>
+</div>
+
+</body>
+</html>
